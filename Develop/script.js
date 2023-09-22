@@ -17,7 +17,33 @@ for (tasks in dailyTasksRecovered){
 
 var Now  = dayjs();
 var suffix = ""
-// console.log(suffix);
+var currentHour = Now.format('HH');
+console.log(currentHour);
+var currentHourText  = ('hour-'+currentHour);
+console.log(currentHourText);
+$('.container-fluid').find('div.time-block').removeClass('past present future');
+var timeBlock = $('.container-fluid').find('div.time-block');
+$('.time-block').each(function(){
+  
+  var hr = $(this).attr('id');
+  var hrNumber = hr.substr(5);
+
+
+  console.log(hrNumber);
+  currentHour = 10;
+  console.log(hrNumber, currentHour);
+  if (hrNumber==currentHour){
+    console.log("Hello World!")
+    $(this).addClass('present');
+  }
+  else if (hrNumber<currentHour){
+    $(this).addClass('past');
+  }
+  else{
+    $(this).addClass('future');
+  }
+  
+})
 
 
 if ((Now.format('D')==='22')||(Now.format('D')==='2')){
@@ -40,6 +66,15 @@ else{
 }
 
 $('#currentDay').append(Now.format('dddd, MMMM D')).append(suffix);
+
+
+
+
+
+
+
+
+
 
 $('.saveBtn').on('click', function(){
   var hourSave = $(this).parent().get(0).id;
