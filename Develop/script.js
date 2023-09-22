@@ -3,6 +3,18 @@
 // in the html.
 $(document).ready(function () {
 
+var dailyTasksRecovered = JSON.parse(sessionStorage.getItem('dailyMessages'));
+console.log(dailyTasksRecovered);
+for (tasks in dailyTasksRecovered){
+  console.log(dailyTasksRecovered[tasks].Hour);
+  var savedHour = dailyTasksRecovered[tasks].Hour;
+  var savedTask = dailyTasksRecovered[tasks].Message;
+  console.log(savedHour);
+   $('.container-fluid').find('#' + savedHour).children('textarea').append(savedTask);
+}
+
+
+
 var Now  = dayjs();
 var suffix = ""
 // console.log(suffix);
@@ -29,7 +41,32 @@ else{
 
 $('#currentDay').append(Now.format('dddd, MMMM D')).append(suffix);
 
+$('.saveBtn').on('click', function(){
+  var hourSave = $(this).parent().get(0).id;
+  var textSave = $(this).siblings('.description').get(0).value;
+  var textArray;
+  if (sessionStorage.getItem('dailyMessages')===null){
+    textArray = [];
+  }
+  else {
+    textArray = JSON.parse(sessionStorage.getItem('dailyMessages'));
 
+  }
+  console.log(hourSave);
+  console.log(textSave);
+
+  var details = {
+    'Hour' : hourSave,
+    'Message' : textSave
+  }
+
+  textArray.push(details);
+  console.log(textArray);
+
+  sessionStorage.setItem('dailyMessages', JSON.stringify(textArray));
+
+
+})
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
