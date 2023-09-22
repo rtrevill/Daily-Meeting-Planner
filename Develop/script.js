@@ -3,7 +3,7 @@
 // in the html.
 $(document).ready(function () {
 
-var dailyTasksRecovered = JSON.parse(sessionStorage.getItem('dailyMessages'));
+var dailyTasksRecovered = JSON.parse(localStorage.getItem('dailyMessages'));
 console.log(dailyTasksRecovered);
 for (tasks in dailyTasksRecovered){
   console.log(dailyTasksRecovered[tasks].Hour);
@@ -44,28 +44,39 @@ $('#currentDay').append(Now.format('dddd, MMMM D')).append(suffix);
 $('.saveBtn').on('click', function(){
   var hourSave = $(this).parent().get(0).id;
   var textSave = $(this).siblings('.description').get(0).value;
-  var textArray;
-  if (sessionStorage.getItem('dailyMessages')===null){
-    textArray = [];
-  }
-  else {
-    textArray = JSON.parse(sessionStorage.getItem('dailyMessages'));
-
-  }
-  console.log(hourSave);
-  console.log(textSave);
-
   var details = {
     'Hour' : hourSave,
     'Message' : textSave
   }
+  var textArray;
 
-  textArray.push(details);
+  if (localStorage.getItem('dailyMessages')===null){
+    textArray = [];
+    textArray.push(details);
+  }
+  else {
+    textArray = JSON.parse(localStorage.getItem('dailyMessages'));
+
+    function findHour(reminders){
+      return reminders.Hour === details.Hour; 
+    }
+
+    var positionOfHour = (textArray.findIndex(findHour)); 
+    if(positionOfHour===-1){
+      console.log(hourSave);
+      console.log(textSave);
+      textArray.push(details);
+      console.log(textArray);
+    }
+    else {
+      textArray.splice(positionOfHour, 1, details);
+
+    }
+
+  }
   console.log(textArray);
-
-  sessionStorage.setItem('dailyMessages', JSON.stringify(textArray));
-
-
+  localStorage.setItem('dailyMessages', JSON.stringify(textArray)); 
+  $('#confirmation').fadeIn(500).delay(3000).fadeOut(500);
 })
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
