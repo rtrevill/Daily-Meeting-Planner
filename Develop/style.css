@@ -3,6 +3,11 @@ body {
   font-size: 16px;
 }
 
+header {
+  text-align: center;
+  border-bottom: 10px solid black;
+}
+
 textarea {
   background: transparent;
   border: none;
@@ -64,4 +69,14 @@ span {
 
 #confirmation {
   display: none;
+  text-align: center;
+}
+
+#clrButton {
+  display: block;
+  margin: 15px auto;
+  background-color: #ff6961;
+  height: 30px;
+  border-radius: 4px;
+
 }
