@@ -12,6 +12,10 @@ textarea {
   padding: 10px;
 }
 
+span {
+  color: Red;
+}
+
 .description {
   white-space: pre-wrap;
 }
