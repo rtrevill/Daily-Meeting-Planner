@@ -30,7 +30,7 @@ $('.time-block').each(function(){
 
 
   console.log(hrNumber);
-  currentHour = 10;
+  // currentHour = 10;
   console.log(hrNumber, currentHour);
   if (hrNumber==currentHour){
     console.log("Hello World!")
@@ -113,6 +113,15 @@ $('.saveBtn').on('click', function(){
   localStorage.setItem('dailyMessages', JSON.stringify(textArray)); 
   $('#confirmation').fadeIn(500).delay(3000).fadeOut(500);
 })
+
+$('#clrButton').on('click', function(){
+var recoveredMEss = JSON.parse(localStorage.getItem('dailyMessages'));
+recoveredMEss=[];
+localStorage.setItem('dailyMessages', JSON.stringify(recoveredMEss));
+location.reload();
+
+
+});
   // TODO: Add a listener for click events on the save button. This code should
   // use the id in the containing time-block as a key to save the user input in
   // local storage. HINT: What does `this` reference in the click listener
