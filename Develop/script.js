@@ -5,10 +5,8 @@ $(document).ready(function () {
 
 var dailyTasksRecovered = JSON.parse(localStorage.getItem('dailyMessages'));
 for (tasks in dailyTasksRecovered){
-  console.log(dailyTasksRecovered[tasks].Hour);
   var savedHour = dailyTasksRecovered[tasks].Hour;
   var savedTask = dailyTasksRecovered[tasks].Message;
-  console.log(savedHour);
    $('.container-fluid').find('#' + savedHour).children('textarea').append(savedTask);
 }
 
@@ -17,22 +15,18 @@ for (tasks in dailyTasksRecovered){
 var Now  = dayjs();
 var suffix = ""
 var currentHour = Now.format('HH');
-console.log(currentHour);
 var currentHourText  = ('hour-'+currentHour);
-console.log(currentHourText);
 $('.container-fluid').find('div.time-block').removeClass('past present future');
-var timeBlock = $('.container-fluid').find('div.time-block');
+// var timeBlock = $('.container-fluid').find('div.time-block');
 $('.time-block').each(function(){
   
-  var hr = $(this).attr('id');
-  var hrNumber = hr.substr(5);
+  // var hr = $(this).attr('id');
+  // var hrNumber = hr.substr(5);
+  var hrNumber = $(this).attr('id').substr(5);
 
-
-  console.log(hrNumber);
-  // currentHour = 10;
+  // currentHour = '15';
   console.log(hrNumber, currentHour);
-  if (hrNumber==currentHour){
-    console.log("Hello World!")
+  if (hrNumber===currentHour){
     $(this).addClass('present');
   }
   else if (hrNumber<currentHour){
@@ -41,24 +35,17 @@ $('.time-block').each(function(){
   else{
     $(this).addClass('future');
   }
-  
 })
 
 
 if ((Now.format('D')==='22')||(Now.format('D')==='2')){
-  console.log("It Works!")
   suffix = "nd";
-  console.log(suffix);
 }
 else if ((Now.format('D')==='21')||(Now.format('D')==='1')){
-  console.log("It Works!")
   suffix = "st";
-  console.log(suffix);
 }
 else if ((Now.format('D')==='23')||(Now.format('D')==='3')){
-  console.log("It Works!")
   suffix = "rd";
-  console.log(suffix);
 }
 else{
   suffix = "th";
