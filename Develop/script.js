@@ -4,7 +4,6 @@
 $(document).ready(function () {
 
 var dailyTasksRecovered = JSON.parse(localStorage.getItem('dailyMessages'));
-console.log(dailyTasksRecovered);
 for (tasks in dailyTasksRecovered){
   console.log(dailyTasksRecovered[tasks].Hour);
   var savedHour = dailyTasksRecovered[tasks].Hour;
@@ -111,7 +110,7 @@ $('.saveBtn').on('click', function(){
   }
   console.log(textArray);
   localStorage.setItem('dailyMessages', JSON.stringify(textArray)); 
-  $('#confirmation').fadeIn(500).delay(3000).fadeOut(500);
+  $('#confirmation').show(500).delay(3000).hide(500);
 })
 
 $('#clrButton').on('click', function(){
