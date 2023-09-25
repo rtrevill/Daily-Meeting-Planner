@@ -3,7 +3,7 @@ The URL of the functional, deployed application: https://rtrevill.github.io/Dail
 The URL of the GitHub repository: https://github.com/rtrevill/Daily-Meeting-Planner
 
 Picture of working Meeting planner:
-
+![Alt text](<Pictures/Daily Planner screenshot.png>)
 
 **NOTE** This Daily Meeting Planner has been produced by modifying source code. The original source code was cloned from: https://github.com/coding-boot-camp/crispy-octo-meme
 
